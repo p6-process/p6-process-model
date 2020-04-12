@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.lorislab.p6</groupId>
     <artifactId>p6-process-model</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.2-SNAPSHOT</version>
 
     <description>P6 process engine model</description>
     <url>https://github.com/lorislab/p6-process/p6-process-model</url>
