@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package org.lorislab.p6.process.deployment;
+package org.lorislab.p6.process.model.runtime;
 
 import com.fasterxml.jackson.databind.util.StdConverter;
-import org.lorislab.p6.process.flow.model.NodeType;
+import org.lorislab.p6.process.model.Type;
 
-public class ProcessDefinitionDeserializer extends StdConverter<ProcessDefinitionModel, ProcessDefinitionModel> {
+public class ProcessDefinitionRuntimeDeserializer extends StdConverter<ProcessDefinitionRuntime, ProcessDefinitionRuntime> {
 
     @Override
-    public ProcessDefinitionModel convert(ProcessDefinitionModel value) {
-        if (value.process != null) {
-            value.process.forEach(n -> {
-                if (n.nodeType == NodeType.START_EVENT) {
-                    value.start.add(n);
+    public ProcessDefinitionRuntime convert(ProcessDefinitionRuntime value) {
+        if (value.nodes != null) {
+            value.nodes.forEach((name,node) -> {
+
+                // previous
+                for (String n : node.next) {
+                    value.nodes.get(n).previous.add(name);
                 }
-                value.nodes.put(n.name, n);
+
+                // start event
+                if (node.type == Type.START_EVENT) {
+                    value.startNodes.put(name, node);
+                }
             });
         }
         return value;
