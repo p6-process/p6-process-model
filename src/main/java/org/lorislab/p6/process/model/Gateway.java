@@ -1,11 +1,12 @@
 package org.lorislab.p6.process.model;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@ToString(callSuper = true)
+@RegisterForReflection
 public class Gateway extends Node {
 
   public Sequence sequence = null;

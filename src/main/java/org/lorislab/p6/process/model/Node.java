@@ -1,6 +1,7 @@
 package org.lorislab.p6.process.model;
 
 import com.fasterxml.jackson.annotation.*;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.ToString;
 
 
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ToString(callSuper = true)
+@RegisterForReflection
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -41,4 +42,9 @@ public abstract class Node {
 
     @JsonIgnore
     public List<String> previous = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + ":" + name;
+    }
 }

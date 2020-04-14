@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.std.DelegatingDeserializer;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import java.io.IOException;
 
+@RegisterForReflection
 public class NodeNameDeserializer extends DelegatingDeserializer {
 
     private static final long serialVersionUID = 1L;

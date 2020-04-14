@@ -1,7 +1,9 @@
 package org.lorislab.p6.process.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
+@RegisterForReflection
 public enum Type {
 
     @JsonProperty(Type.TYPE_SCRIPT_TASK)

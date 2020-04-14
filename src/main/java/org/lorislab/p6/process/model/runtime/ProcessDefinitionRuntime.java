@@ -17,6 +17,7 @@
 package org.lorislab.p6.process.model.runtime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.ToString;
 import org.lorislab.p6.process.model.Node;
 import org.lorislab.p6.process.model.ProcessDefinition;
@@ -24,7 +25,7 @@ import org.lorislab.p6.process.model.ProcessDefinition;
 import java.util.HashMap;
 import java.util.Map;
 
-@ToString(callSuper = true)
+@RegisterForReflection
 @JsonDeserialize(converter = ProcessDefinitionRuntimeDeserializer.class)
 public class ProcessDefinitionRuntime extends ProcessDefinition {
 

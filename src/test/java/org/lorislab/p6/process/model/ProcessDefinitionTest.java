@@ -4,16 +4,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.lorislab.p6.process.model.runtime.ProcessDefinitionLoader;
+import org.lorislab.p6.process.model.runtime.ProcessDefinitionRuntime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 @DisplayName("Process definition tests")
 public class ProcessDefinitionTest {
 
+    private static Logger log = LoggerFactory.getLogger(ProcessDefinitionTest.class);
+
     @Test
     @DisplayName("Load start-end process test")
     public void startEndProcessTest() {
         ProcessDefinition pd = ProcessDefinitionLoader.load(new File("src/test/resources/startEndProcess.yaml"));
+        log.info("Start-end process: {}", pd);
         Assertions.assertNotNull(pd);
         Assertions.assertEquals("startEndProcess", pd.id);
         Assertions.assertEquals("1.2.3", pd.version);
@@ -45,6 +51,7 @@ public class ProcessDefinitionTest {
     @DisplayName("Load service-task process test")
     public void serviceTaskProcessTest() {
         ProcessDefinition pd = ProcessDefinitionLoader.load(new File("src/test/resources/serviceTaskProcess.yaml"));
+        log.info("Service-task process: {}", pd);
         Assertions.assertNotNull(pd);
         Assertions.assertNotNull(pd.nodes);
         Assertions.assertEquals(3, pd.nodes.size());
@@ -54,6 +61,17 @@ public class ProcessDefinitionTest {
     @DisplayName("Load parallel-gateway process test")
     public void parallelGatewayProcessTest() {
         ProcessDefinition pd = ProcessDefinitionLoader.load(new File("src/test/resources/parallelGatewayProcess.yaml"));
+        log.info("Parallel-gateway process: {}", pd);
+        Assertions.assertNotNull(pd);
+        Assertions.assertNotNull(pd.nodes);
+        Assertions.assertEquals(8, pd.nodes.size());
+    }
+
+    @Test
+    @DisplayName("Load parallel-gateway runtime process test")
+    public void parallelGatewayRuntimeProcessTest() {
+        ProcessDefinitionRuntime pd = ProcessDefinitionLoader.loadRuntime(new File("src/test/resources/parallelGatewayProcess.yaml"));
+        log.info("Parallel-gateway runtime process: {}", pd);
         Assertions.assertNotNull(pd);
         Assertions.assertNotNull(pd.nodes);
         Assertions.assertEquals(8, pd.nodes.size());
@@ -63,6 +81,7 @@ public class ProcessDefinitionTest {
     @DisplayName("Load inclusive-gateway process test")
     public void inclusiveGatewayProcessTest() {
         ProcessDefinition pd = ProcessDefinitionLoader.load(new File("src/test/resources/inclusiveGatewayProcess.yaml"));
+        log.info("Inclusive-gateway process: {}", pd);
         Assertions.assertNotNull(pd);
         Assertions.assertNotNull(pd.nodes);
         Assertions.assertEquals(7, pd.nodes.size());
@@ -72,6 +91,7 @@ public class ProcessDefinitionTest {
     @DisplayName("Load exclusive-gateway process test")
     public void exclusiveGatewayProcessTest() {
         ProcessDefinition pd = ProcessDefinitionLoader.load(new File("src/test/resources/exclusiveGatewayProcess.yaml"));
+        log.info("Exclusive-gateway process: {}", pd);
         Assertions.assertNotNull(pd);
         Assertions.assertNotNull(pd.nodes);
         Assertions.assertEquals(6, pd.nodes.size());
